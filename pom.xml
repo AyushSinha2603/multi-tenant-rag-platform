@@ -25,6 +25,17 @@
         <relativePath/>
     </parent>
 
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <properties>
         <java.version>21</java.version>
         <spring-ai.version>1.0.0-M1</spring-ai.version>
