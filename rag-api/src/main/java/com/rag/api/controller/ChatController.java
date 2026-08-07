@@ -1,6 +1,6 @@
 package com.rag.api.controller;
 
-import com.rag.infra.llm.RagChatService;
+import com.rag.api.service.RagOrchestrationService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,15 +12,15 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/api/v1/chat")
 public class ChatController {
 
-    private final RagChatService chatService;
+    private final RagOrchestrationService orchestrationService;
 
-    public ChatController(RagChatService chatService) {
-        this.chatService = chatService;
+    public ChatController(RagOrchestrationService orchestrationService) {
+        this.orchestrationService = orchestrationService;
     }
 
     @GetMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> streamChat(@RequestParam String prompt) {
-        String placeholderContext = "Retrieved context will go here once the service layer is complete.";
-        return chatService.streamResponse(prompt, placeholderContext);
+        String mockEmbedding = "[0.0, 0.0, 0.0]";
+        return orchestrationService.processQuery(prompt, mockEmbedding);
     }
 }
